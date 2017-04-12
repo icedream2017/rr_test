@@ -49,7 +49,7 @@ task wrapper(type: Wrapper) {
 
 sonarqube {
     properties {
-        property "sonar.host.url", "https://10.0.3.155:9000"
+        property "sonar.host.url", "https://10.0.3.155:9000/sonar"
         property "sonar.branch", sonarBranch
         property "sonar.login", "jenkins"
         property "sonar.password", "jenkins"
