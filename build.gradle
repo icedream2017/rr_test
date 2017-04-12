@@ -1,4 +1,14 @@
-// Test
+buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+        mavenCentral()
+    }
+}
+plugins {
+    id "org.sonarqube" version "2.2.1"
+}
+
 version '0.1'
 
 // plugins needed for development and deployment
@@ -7,6 +17,8 @@ apply plugin: 'war'
 // plugins to support an IDE
 apply plugin: 'idea'
 apply plugin: 'eclipse'
+apply plugin: 'org.sonarqube'
+apply plugin: 'jacoco'
 
 
 sourceCompatibility = 1.8
@@ -28,4 +40,15 @@ dependencies {
 task wrapper(type: Wrapper) {
     gradleVersion = '3.4.1'
     distributionUrl = "http://services.gradle.org/distributions/gradle-${gradleVersion}-all.zip"
+}
+
+sonarqube {
+    properties {
+        property "sonar.host.url", "https://jenkins.iue.fh-kiel.de/sonar/"
+        property "sonar.login", "admin"
+        property "sonar.password", "admin"
+        property "sonar.skipDesign", "true"
+        property "sonar.analysis.mode", "publish"
+        property "sonar.sourceEncoding", "UTF-8"
+    }
 }
