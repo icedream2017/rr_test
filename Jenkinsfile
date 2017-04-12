@@ -22,7 +22,6 @@ node {
 
     stage('sonarqube') {
         sh "./gradlew -PsonarBranch=${env.BRANCH_NAME} sonarqube"
-        gradlew('sonarqube')
     }
 }
 
