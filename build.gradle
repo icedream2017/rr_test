@@ -1,3 +1,4 @@
+// Test
 version '0.1'
 
 // plugins needed for development and deployment
@@ -21,7 +22,7 @@ dependencies {
     compile "org.apache.logging.log4j:log4j-api:${log4jVersion}"
     compile "org.apache.logging.log4j:log4j-core:${log4jVersion}"
 
-    testCompile  version: '4.12', group: 'junit', name: 'junit'
+    testCompile version: '4.12', group: 'junit', name: 'junit'
 }
 
 task wrapper(type: Wrapper) {
