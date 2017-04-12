@@ -17,6 +17,7 @@ apply plugin: 'war'
 // plugins to support an IDE
 apply plugin: 'idea'
 apply plugin: 'eclipse'
+// plugins to support quality assurance
 apply plugin: 'org.sonarqube'
 apply plugin: 'jacoco'
 
@@ -27,6 +28,10 @@ repositories {
     mavenLocal()
     jcenter()
     mavenCentral()
+}
+
+if (!project.hasProperty("sonarBranch")) {
+    ext.sonarBranch = "unknown"
 }
 
 dependencies {
@@ -44,9 +49,10 @@ task wrapper(type: Wrapper) {
 
 sonarqube {
     properties {
-        property "sonar.host.url", "https://jenkins.iue.fh-kiel.de/sonar/"
-        property "sonar.login", "admin"
-        property "sonar.password", "admin"
+        property "sonar.host.url", "https://10.0.3.155:9000"
+        property "sonar.branch", sonarBranch
+        property "sonar.login", "jenkins"
+        property "sonar.password", "jenkins"
         property "sonar.skipDesign", "true"
         property "sonar.analysis.mode", "publish"
         property "sonar.sourceEncoding", "UTF-8"
